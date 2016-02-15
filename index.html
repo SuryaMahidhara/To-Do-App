@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Todo App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="TodoController">
+        <form ng-submit="addTodo()">
+            <input ng-model="addNewTodo" placeholder="Add a new To-do" type="text">
+            <br>
+            <br>
+            <button type="submit">Add</button>
+            <br>
+            <br>
+        </form>
+        <ul>
+            <li ng-init="todo.isUpdate = false" ng-repeat="todo in todos track by $index">
+                <span ng-hide="todo.isUpdate">{{todo.tag}}</span>
+                <span ng-show="todo.isUpdate">
+	                <input ng-model="todo.tag" type="text">
+	                <button ng-click="updateTodo($index)">Update</button>
+	            </span>
+                <a ng-hide="todo.isUpdate" href="" ng-click="updateTodo($index)">Update</a>
+                <a href="" ng-click="removeTodo($index)">Remove</a>
+            </li>
+        </ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
